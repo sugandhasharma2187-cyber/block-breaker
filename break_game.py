@@ -46,6 +46,7 @@ for row in range(4):
 pen=Turtle()
 
 score=0
+deaths = 0
 pen.color("white")
 pen.up()
 pen.hideturtle()
@@ -69,14 +70,14 @@ while True:
     if not game_start:
         continue
 
-    ball.setx(ball.xcor+ball.dx)
-    ball.sety(ball.ycor+ball.dy)
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() +ball.dy)
     # wall collision
     if ball.xcor()>290 or ball.xcor()<-290:
         ball.dx = ball.dx * -1
     
     if ball.ycor()<-290:
-        deaths+=1
+        deaths += 1
         ball.goto(0,0)
         ball.dy *= -1
         game_start = False
@@ -87,12 +88,12 @@ while True:
             pen.write("game over",align="center",font=("arial",30,"bold"))
             break
     
-    if (-260 < ball.ycor < -216) and (paddle.xcor()-50 < ball xcor()< paddle.xcor() + 50):
+    if (-260 < ball.ycor() < -216) and (paddle.xcor()-50 < ball.xcor()< paddle.xcor() + 50):
         ball.dy *= -1
     #collision brick
     for brick in bricks:
-        if brick.isvisisble () and\
-         (paddle.xcor()-50 < ball.xcor() < paddle.xcor( +50)):
+        if brick.isvisisble() and\
+         (paddle.xcor()-50 < ball.xcor() < paddle.xcor() + 50 ):
             ball.dy *= -1
             brick.hideturtle()
             bricks.remove(brick)
